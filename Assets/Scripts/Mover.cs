@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+  //  [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float horizontalSpeed = 300f;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("I'm a new Script");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Get the horizontal and vertical input values
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -23,6 +28,17 @@ public class Mover : MonoBehaviour
 
         //Move the object based on input,speed, and frame rate
 
-        transform.Translate(movement*speed*Time.deltaTime);
+        // transform.Translate(movement*speed*Time.deltaTime);
+       // Debug.Log("Horizontal Input: "+horizontalInput + " | Vertical Input: "+verticalInput);
+
+        rb.AddForce(movement*horizontalSpeed*Time.fixedDeltaTime);
+
+        bool isGrounded = Physics.Raycast(transform.position,Vector3.down
+            ,0.6f,groundLayer);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            rb.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
+        }
+
     }
 }

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 207450620}
   - component: {fileID: 207450619}
   - component: {fileID: 207450618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945b16280ee1b8a4ab45484510e10165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  jumpForce: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  horizontalSpeed: 1000
 --- !u!65 &544503687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -540,7 +544,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &836775189
 GameObject:
@@ -633,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836775189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.84, y: 1, z: -7.68}
+  m_LocalPosition: {x: -8.84, y: 1, z: 8.41}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -760,6 +764,7 @@ GameObject:
   - component: {fileID: 1224537617}
   - component: {fileID: 1224537616}
   - component: {fileID: 1224537615}
+  - component: {fileID: 1224537618}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -833,6 +838,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1224537618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224537614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc58f3ce1cdb1e4e872edcb6be29665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 544503685}
+  offset: {x: 0, y: 5, z: -7}
 --- !u!1 &1608085376
 GameObject:
   m_ObjectHideFlags: 0
