@@ -72,6 +72,11 @@ public class FPSController : MonoBehaviour
                 }
 
             }
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);// This one line handles CubeEnemy, FastEnemy etc.
+            }
         }
     }
 }

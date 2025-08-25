@@ -9,11 +9,13 @@ public class Mover : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float horizontalSpeed = 300f;
     private Rigidbody rb;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("I'm a new Script");
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,8 @@ public class Mover : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
             rb.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);
         }
+        Debug.Log("Speed : "+ movement.magnitude);
+        animator.SetFloat("Speed",movement.magnitude);
 
     }
 }

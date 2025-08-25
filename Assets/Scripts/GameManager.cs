@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int score = 0;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
+        UpdateScoreUI();
         Debug.Log("Current score : "+ score);
+    }
+    private void UpdateScoreUI()
+    {
+        scoreText.text = "Score : " + score;
     }
 }
